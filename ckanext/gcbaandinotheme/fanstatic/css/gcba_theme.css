@@ -609,8 +609,9 @@ COMPONENTS:
 #title {
   color: #222222 !important;
   background: #fed11a !important;
-  background: url('images/hero3.jpg') bottom center no-repeat !important;
   background-size: cover !important;
+  background-position: bottom center !important;
+  background-repeat: no-repeat !important;
 }
 #title .background-overlay,
 #title .stats-overlay {
@@ -1238,4 +1239,69 @@ Fonts
   .background-overlay {
     margin-top: 80px !important;
   }
+}
+
+/*EDIT // TABS*/
+
+#edit-package-container #edit-package form .resource-nav a div {
+  border-radius: 4px !important;
+  padding: 10px 15px;
+  border: 2px solid #fff;
+}
+#edit-package-container #edit-package form .resource-nav a div.active {
+  color: #fff;
+}
+
+#edit-package-container #edit-package form .resource-nav a div {
+  color: #19c3e3;
+}
+#edit-package-container #edit-package form .resource-nav a:hover div {
+  color: #888 !important;
+}
+#edit-package-container #edit-package form .resource-nav {
+  background-color: #fff;
+}
+
+#edit-package-container #edit-package form .resource-nav a:hover div,  #edit-package-container #new-package form .resource-nav a:hover div,  #new-package-container #edit-package form .resource-nav a:hover div, #new-package-container #new-package form .resource-nav a:hover div {
+  background-color: #e5e5e5 !important;
+  color: #888 !important;
+}
+#edit-package-container #edit-package form .resource-nav, #edit-package-container #new-package form .resource-nav, #new-package-container #edit-package form .resource-nav, #new-package-container #new-package form .resource-nav {
+  background-color: #fff !important;
+}
+
+/*EDIT // FORM */
+#edit-package-container #edit-package form .control-group .after-desc, #edit-package-container #new-package form .control-group .after-desc, #new-package-container #edit-package form .control-group .after-desc, #new-package-container #new-package form .control-group .after-desc {
+    font-size: 12px;
+        font-family: "OpenSans", Helvetica, Arial, sans-serif !important;
+}
+#resource-edit #resource-attributes-form .resource-attributes-group .resource-attributes-input-container .resource-attributes-input-disclaimer {
+  font-size: 12px !important;
+  color: #767676 !important;
+  margin: 10px 0 0 0;
+  font-family: "OpenSans", Helvetica, Arial, sans-serif !important;
+}
+#edit-package-container #edit-package form .control-group label, #edit-package-container #new-package form .control-group label, #new-package-container #edit-package form .control-group label, #new-package-container #new-package form .control-group label {
+  color: #333 !important;
+  font-weight: 700 !important;
+}
+.select2-container, .select2-result-label {
+  font-family: "OpenSans", Helvetica, Arial, sans-serif !important;
+}
+/*EDIT // FORM BTNS */
+.back-btn .icon-chevron-left, .btn .icon-cloud-upload, .btn .icon-plus-sign-alt {
+  display: none;
+}
+.btn .caret {
+  margin-top: 0;
+}
+.resource-view-add-filter {
+  font-family: "OpenSans", Helvetica, Arial, sans-serif !important;
+}
+
+/*EDIT // TABLE */
+#edit-package .table {
+    font-family: "OpenSans", Helvetica, Arial, sans-serif !important;
+    font-size: 14px;
+
 }
