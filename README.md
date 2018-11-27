@@ -27,7 +27,7 @@ Para simplificar el agregado de las secciones, se recomienda subir el código HT
 
 Si es necesario subir imágenes que acompañen al template, las mismas debe ser subidas en la ruta `ckanext/gcbaandinotheme/public/img`. Las mismas estarán disponibles en el servidor web en la ruta `/img`.
 
-### Actualización instalacioón del template dentro de Andino
+### Actualización del template dentro de Andino
 
 Para que el código del nuevo template esté disponible para ser usando en Andino, el encargado de gestionar la infraestructura del portal de datos de la Ciudad Autónoma de Buenos Aires deberá actualizar el repositorio de código dentro del contenedor `portal` de Andino siguiendo los siguientes pasos:
 
@@ -43,3 +43,42 @@ Para que el código del nuevo template esté disponible para ser usando en Andin
 ### Configuración de la sección Acerca
 
 Una vez que el template de la nueva sección "Acerca" se encuentra disponible dentro del contendor `portal` de Andino, puede ser configurado siguiendo las instrucciones de la [documentación oficial de Andino](https://portal-andino.readthedocs.io/es/stable/quickstart/#como-puedo-crear-y-mostrar-mis-secciones-personalizadas). Simplemente será necesario acceder al panel de administración de Andino y agregar la sección Acerca utilizando el mismo nombre de archivo guardado en el repositorio.
+
+## Agregado de nuevos elementos en la sección Historias
+
+La sección "Historias" está compuesta por un template HTML ubicado en la ruta `ckanext/gcbaandinotheme/templates/historias.html` y un conjunto de imágenes en formato _png_ ubicadas en `ckanext/gcbaandinotheme/public/img/historias`.
+
+El _markup_ HTML del template de la sección define la forma en que las mismas se mostrarán, para agregar una historia simplemente es necesario agregar un elemento nuevo dentro del elemento `div.histories-list` del template `historias.html` con la siguiente estructura:
+
+```html
+<a href="{{ LINK A LA HISTORIA }}" target="blank" class="dataset-item">
+    <div class="col-xs-12 col-md-3">
+        <div class="dataset-container">
+            <div class="dataset-border">
+                <div class="restricted-max-width">
+                    <div class="col-xs-912"><img src="{{ RUTA A LA IMAGEN THUMB }}"></div>
+                    <div class="dataset-content col-xs-12">
+                        <h4>{{ TÍTULO DE LA HISTORIA }}</h4>
+                        <div class="dataset-notes">
+                            <p>{{ DESCRIPCIÓN DE LA HISTORIA }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+```
+
+Como puede apreciarse arriba, para agregar una historia es necesario contar con 4 elementos:
+
+1. La URL donde está alojada la historia.
+1. Título de la historia.
+1. Descripción de la historia.
+1. Imagen de la historia. Puede ser una URL externa o un archivo imagen, en cuyo caso debe ser subida en el repositorio del plugin en la ruta `ckanext/gcbaandinotheme/public/img/historias` y referenciadas desde el template usando la ruta `/img/historias/nombre-del-archivo.png`.
+
+Una vez armado el _snippet_ de la historia utilizando los cuatro valores arriba mencionados, se agrega la historia al archivo `ckanext/gcbaandinotheme/templates/historias.html` en el orden deseado (las primeras aparecerán arriba de todo).
+
+El código debe luego subirse al repositorio de código y debe realizarse la actualización del código del plugin utilizando el mismo procedimiento que se encuentra detallado en [Actualización del template dentro de Andino](#Actualización-del-template-dentro-de-Andino).
+
+Una vez actualizado el código del plugin dentro del contenedor `portal` de Andino, los cambios se visualizarán automáticamente.
