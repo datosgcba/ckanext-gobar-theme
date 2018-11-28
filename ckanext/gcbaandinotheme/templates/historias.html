@@ -6,7 +6,8 @@
 
 <div class="home">
 
-    <div id="title" class="container-fluid title-variant-4" style="">
+    {% set background = h.get_theme_config('title.background-image') %}
+    <div id="title" class="container-fluid title-variant-4" style="{{ 'background-image:url("%s")' % background if background else '' }}">
         <div class="background-overlay no-padding-bottom">
             <div class="restricted-max-width">
                 <div class="col-xs-12 col-md-10 col-md-offset-1">
@@ -26,6 +27,57 @@
 <div class="container">
     <div class="row" style="margin-top: 50px;">
         <div class="dataset-list histories-list">
+            <a href="https://datosgcba.github.io/baset-juego" target="blank" class="dataset-item">
+                <div class="col-xs-12 col-md-3">
+                    <div class="dataset-container">
+                        <div class="dataset-border">
+                            <div class="restricted-max-width">
+                                <div class="col-xs-912"><img src="/img/historias/40.png"></div>
+                                <div class="dataset-content col-xs-12">
+                                    <h4>Ciudad de película</h4>
+                                    <div class="dataset-notes">
+                                        <p>Juego de preguntas y respuestas que muestra cuáles fueron las producciones audiovisuales que más permisos pidieron para filmar en espacios públicos y cuáles fueron los barrios más elegidos para hacerlo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://transforma.buenosaires.gob.ar/" target="blank" class="dataset-item">
+                <div class="col-xs-12 col-md-3">
+                    <div class="dataset-container">
+                        <div class="dataset-border">
+                            <div class="restricted-max-width">
+                                <div class="col-xs-912"><img src="/img/historias/41.png"></div>
+                                <div class="dataset-content col-xs-12">
+                                    <h4>Transforma BA</h4>
+                                    <div class="dataset-notes">
+                                        <p>El plan de infraestructura más importante de las últimas está en marcha. Descubrí todas las obras que están transformando la Ciudad.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://maximilianoscocozza.github.io/ecobici.html" target="blank" class="dataset-item">
+                <div class="col-xs-12 col-md-3">
+                    <div class="dataset-container">
+                        <div class="dataset-border">
+                            <div class="restricted-max-width">
+                                <div class="col-xs-912"><img src="/img/historias/42.png"></div>
+                                <div class="dataset-content col-xs-12">
+                                    <h4>Trayectos más usados</h4>
+                                    <div class="dataset-notes">
+                                        <p>Análisis de los trayectos entre estaciones con mayor cantidad de viajes realizados según género.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
             <a href="http://www.buenosaires.gob.ar/baobras" target="blank" class="dataset-item">
                 <div class="col-xs-12 col-md-3">
                     <div class="dataset-container">
