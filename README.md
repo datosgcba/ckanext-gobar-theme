@@ -38,7 +38,7 @@ Para que el código del nuevo template esté disponible para ser usando en Andin
 1. Sincronizar el repositorio: `git fetch`.
 1. Saltar a la versión específica que agrega el cambio que queremos actualizar en el sitio (ejemplo: el agregado del archivo `equipo.html` y/o imágenes): `git checkout <hash del commit>`. Para esto será necesario indicarle al equipo encargado de gestionar la infraestructura del sitio cual es el _hash_ del _commit_ a instalar.
 1. Salir del contenedor `portal`: `exit`.
-1. Reiniciar el contenedor `portal` y `nginx`: `sudo docker-compose -f latest.yml restart nginx portal --no-deps`.
+1. Reiniciar el contenedor `portal` y `nginx`: `sudo docker-compose -f latest.yml restart nginx portal`.
 
 ### Configuración de la sección Acerca
 
