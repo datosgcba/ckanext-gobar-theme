@@ -560,6 +560,10 @@ COMPONENTS:
 #header .logo-header .logo-and-xs-icon a:not(.edit-description-link) img {
   display: none !important;
 }
+#header .edit-description-link {
+  position: absolute;
+  top: 0;
+}
 #header .header-links {
   height: auto !important;
   line-height: 1em !important;
@@ -608,10 +612,10 @@ COMPONENTS:
 }
 #title {
   color: #222222 !important;
-  background: #fed11a !important;
   background-size: cover !important;
   background-position: bottom center !important;
   background-repeat: no-repeat !important;
+  background-color: #666 !important;
 }
 #title .background-overlay,
 #title .stats-overlay {
