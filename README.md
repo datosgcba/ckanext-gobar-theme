@@ -17,6 +17,34 @@ Plugin visual del portal de Datos Abiertos de la Ciudad Autónoma de Buenos Aire
     1. Agregar `andino.base_page = gcba_base_page.html` dentro de la sección `[app:main]`.
 1. Reiniciar Andino.
 
+### Instalación de `ckanext-security`
+
+El plugin `ckanext-security` permite mejorar los parámetros de seguridad de una instancia de CKAN, por ejemplo:
+
+* Bloqueo automático de intentos de inicio de sesión fallidos.
+* Expiración de sesiones automática.
+* Políticas de contraseñas seguras.
+
+Las instrucciones de instalación del plugin son:
+
+1. Verificar que la versión de Andino instalada sea como mínimo la `2.5.5`.
+1. Ingresar al contenedor `portal`, ejecutando en el directorio de instalación de Andino (ej: `/etc/portal`): `docker-compose -f latest.yml exec portal bash`.
+1. Activar el `virtualenv` dentro del contenedor: `. /usr/lib/ckan/default/bin/activate`.
+1. Instalar el plugin: `pip install -e 'git+https://github.com/data-govt-nz/ckanext-security.git@c8faa7e54af45612b6f60fdb64527375fa1b1223#egg=ckanext-security'`. Este comando instala la última versión disponible del plugin a Marzo de 2019.
+1. Patchear el módulo `ckan.config.middleware`. Como está explicado en la [documentación de `ckanext-security`](https://github.com/data-govt-nz/ckanext-security#requirements) es necesario modificar el código de CKAN para reordenar la creación de _middlewares_. Este cambio será incorporado al core de CKAN en versiones futuras.
+   1. `cd /usr/lib/ckan/default/src/ckan`
+   1. `git remote add -f data-govt-nz https://github.com/data-govt-nz/ckan.git`
+   1. `git cherry-pick 74f78865b8825c91d1dfe6b189228f4b975610a3`
+   1. Ignorar el warning que muestra `git`: _Please tell me who you are_.
+1. Modificaciones al archivo de configuración `who.ini`: Realizar los cambios sugeridos en la [documentación de `ckanext-security`](https://github.com/data-govt-nz/ckanext-security#changes-to-whoini). El archivo a modificar se encuentra en `/etc/ckan/default/who.ini`. Tener en cuenta que la instancia de redis se encuentra accesible en la red de docker con el nombre de dominio `redis`.
+1. Modificaciones al archivo de configuración `production.ini`: Realizar los cambios sugeridos en la [documentación de `ckanext-security`](https://github.com/data-govt-nz/ckanext-security#changes-to-ckan-config). El archivo a modificar se encuentra en `/etc/ckan/default/production.ini`. Tener en cuenta que la instancia de redis se encuentra accesible en la red de docker con el nombre de dominio `redis`.
+1. Agregar `security` a la lista de plugins en `production.ini`, en el anteultimo lugar (antes de `googleanalytics`).
+1. Reiniciar apache.
+
+#### Actualizando Andino luego de instalar `ckanext/security`
+
+Si se desea actualizar Andino luego de haber realizado los cambios detallados en esta sección, es necesario antes de ejecutar la actualización deshacer los cambios en el archivo `production.ini`, actualizar Andino y volver a aplicar los cambios.
+
 ## Nuevas secciones "Acerca"
 
 ### Agregado del código del template de la nueva sección al repositorio de código
