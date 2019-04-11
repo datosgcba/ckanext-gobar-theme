@@ -850,6 +850,9 @@ a:hover .group-text .group-table {
 .filters-container .search-filter .group-images .group-image-container.available svg rect {
     fill: #767676;
 }
+.pkg-container .pkg-actions {
+  top: 100% !important;
+}
 .pkg-container .pkg-actions a {
   display: block !important;
 }
@@ -996,7 +999,7 @@ a:hover .group-text .group-table {
 .package #pkg-main-info #pkg-resources {
   background-color: #f9f9f9 !important;
   border-bottom: 0 !important;
-  padding: 15px !important;
+  padding: 0 15px 0 15px !important;
 }
 .package #pkg-main-info #pkg-resources .pkg-container {
   position: relative !important;
@@ -1007,12 +1010,11 @@ a:hover .group-text .group-table {
 }
 .package #pkg-main-info #pkg-resources .pkg-container .pkg-actions {
   width: 100% !important;
-  top: 22.5px !important;
   right: 15px !important;
-  margin: 0 !important;
+  margin: -40px 0 0 0 !important;
 }
 .pkg-container .package-info {
-    padding: 70px 0 0 62px !important;
+  padding: 0 0 20px 62px !important;
 }
 .package #pkg-main-info #pkg-resources .pkg-container .pkg-actions a,
 .package #pkg-main-info #pkg-resources .pkg-container .pkg-actions button {
