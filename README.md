@@ -11,7 +11,7 @@ Plugin visual del portal de Datos Abiertos de la Ciudad Autónoma de Buenos Aire
 1. Ingresar al host donde se encuentra instalado Andino.
 1. Ingresar al contenedor `portal` (`docker-compose exec bash`).
 1. Dentro del contenedor `portal` activar el `virtualenv` de CKAN: `. /usr/lib/ckan/default/bin/activate`.
-1. Instalar el plugin con `pip`: `pip install -e git+https://github.com/datosgcba/ckanext-gcbaandinotheme.git@7c41bb5da9c21c170ce668c722ed97f148ae1f79#egg=ckanext-gcbaandinotheme`.
+1. Instalar el plugin con `pip`: `pip install -e git+https://github.com/datosgcba/ckanext-gcbaandinotheme.git@9fb3077af30c91a5f1223b92ea1a50bcb085a9a7#egg=ckanext-gcbaandinotheme`.
 1. Editar el archivo `/etc/ckan/default/production.ini` y modificar:
     1. Agregar `gcbaandinotheme` a la lista de plugins inmediatamente antes de `gobar_theme`.
     1. Agregar `andino.base_page = gcba_base_page.html` dentro de la sección `[app:main]`.
