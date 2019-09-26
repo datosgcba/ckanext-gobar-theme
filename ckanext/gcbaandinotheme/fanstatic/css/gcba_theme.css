@@ -507,7 +507,7 @@ textarea {
 }
 select#field-order-by {
   height: 37px !important;
-} 
+}
 label,
 .label-control {
   font-family: 'Open Sans' !important;
@@ -940,7 +940,7 @@ a:hover .group-text .group-table {
   box-shadow: 5px 5px 13px -2px rgba(102, 102, 102, 0.16);
 }
 #featured-content-container #featured-content .table-wrapper a:hover {
-    background: #f9f6ea !important; 
+    background: #f9f6ea !important;
 }
 
 .dataset-list .dataset-item .dataset-container .dataset-border .dataset-groups-and-resources .dataset-groups img.group-image {
@@ -1155,6 +1155,7 @@ HISTORIAS:
 
 .dataset-list.histories-list .dataset-item .dataset-container {
   border: none !important;
+  height: 320px;
 }
 .dataset-list.histories-list .dataset-item .dataset-container .dataset-border:hover {
   background-color: #f5f5f5 !important;
