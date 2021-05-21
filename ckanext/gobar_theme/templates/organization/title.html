@@ -1,0 +1,25 @@
+{% set stats = h.get_site_statistics() %}
+
+<div id="title" class="container-fluid">
+    <div>
+        <div class="restricted-max-width">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <div id="title-container" class="col-xs-12 col-md-8">
+                    <h1>Organizaciones con datos</h1>
+                    <p class="description">
+                        Mirá las áreas del Gobierno de la Ciudad que ya abrieron sus datos.
+                    </p>
+                </div>
+                <div id="stats" class="col-xs-12 col-md-4">
+                    <div>
+                        <p class="stat organizations">{{ "%03d" % h.organizations_with_packages() }}</p>
+
+                        <p class="stats-legend">ORGANIZACIONES<br> CON DATOS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>   
+</div>
+
+{% asset 'gobar_js/background_ie' %}

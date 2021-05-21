@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+<!-- TODO: buscar mejor forma de deshabilitar estos mensajes -->
+{% set messages = h.flash.pop_messages() %}
+
+{%- block page -%}
+    <!-- Google Tag Manager -->
+    <!-- End Google Tag Manager -->
+        {%- block header %}
+            {% include "header.html" %}
+        {% endblock -%}
+
+        {%- block content %}
+        {% endblock -%}
+
+        {%- block footer %}
+            {% include "footer.html" %}
+        {% endblock -%}
+{%- endblock -%}
+
+{%- block scripts %}
+    {% asset 'base/main' %}
+    {% asset 'base/ckan' %}
+    {% if g.tracking_enabled %}
+        {% asset 'base/tracking.js' %}
+    {% endif %}
+    {% asset 'gobar_js/libs' %}
+    {% asset 'gobar_js/console_message' %}
+    {% asset 'gobar_js/replace_svg' %}
+    {% asset 'gobar_js/forms' %}
+    {% asset 'gobar_js/header' %}
+    {{ super() }}
+{% endblock -%}

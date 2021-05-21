@@ -1,31 +1,26 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages  # Always prefer setuptools over distutils
-from codecs import open  # To use a consistent encoding
 from os import path
 
 here = path.abspath(path.dirname(__file__))
 
-# Get the long description from the relevant file
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
-
 setup(
-    name='''ckanext-gcbaandinotheme''',
+    name='''ckanext-gobar_theme''',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
     version='0.0.1',
 
-    description='''Template de plugin para Andino.''',
-    long_description=long_description,
+    description='''.gob.ar theme''',
+    long_description='',
 
     # The project's main homepage.
-    url='https://github.com/datosgobar/ckanext-gcbaandinotheme',
+    url='https://github.com/datosgobar/datos.gob.ar',
 
     # Author details
-    author='''Poli García''',
-    author_email='''poli@devartis.com''',
+    author='''Ignacio Heredia & Refactor -> Gaston Jouglard''',
+    author_email='''gastonjouglard.10@gmail.com''',
 
     # Choose your license
     license='AGPL',
@@ -43,24 +38,23 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
+        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.7.9',
     ],
 
-
     # What does your project relate to?
-    keywords='''CKAN andino datosgobar''',
+    keywords='''CKAN Argentina theme''',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
-    namespace_packages=['ckanext'],
 
-    install_requires=[
-      # CKAN extensions should not list dependencies here, but in a separate
-      # ``requirements.txt`` file.
-      #
-      # http://docs.ckan.org/en/latest/extensions/best-practices.html#add-third-party-libraries-to-requirements-txt
-    ],
+    # List run-time dependencies here.  These will be installed by pip when your
+    # project is installed. For an analysis of "install_requires" vs pip's
+    # requirements files see:
+    # https://packaging.python.org/en/latest/technical.html#install-requires-vs-requirements-files
+    install_requires=[],
 
     # If there are data files included in your packages that need to be
     # installed, specify them here.  If using Python 2.6 or less, then these
@@ -80,8 +74,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points='''
         [ckan.plugins]
-        gcbaandinotheme=ckanext.gcbaandinotheme.plugin:GcbaAndinoThemePlugin
-
+        gobar_theme=ckanext.gobar_theme.plugin:Gobar_ThemePlugin
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
     ''',

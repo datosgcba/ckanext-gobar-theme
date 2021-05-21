@@ -1,0 +1,9 @@
+{# Adds 'Add Dataset' button #}
+
+{% set dataset_type = dataset_type if dataset_type else 'dataset' %}
+
+{% if group %}
+    {% link_for _('CREAR DATASET'), named_route='dataset.new', group=group, class_='' %}
+{% else %}
+    {% link_for _('CREAR DATASET'), named_route='%s.new' % dataset_type, class_='' %}
+{% endif %}

@@ -1,0 +1,22 @@
+#title.package-title .background-overlay {
+  padding-bottom: 40px;
+}
+#title.package-title #title-container .description {
+  margin: 0;
+}
+#title.package-title #title-container .description .edit-description-link svg.edit-svg {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+#title.package-title #title-container .description .edit-description-link svg.edit-svg path {
+  fill: white;
+}
+#title.package-title #stats > div {
+  padding: 0;
+}
+#title.package-title #stats > div .stats-legend {
+  margin: 0;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../sass/package/title.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACE;EACE;;AAGA;EACE;;AACA;EACE;EACA;EACA;;AACA;EACE;;AAMN;EACE;;AACA;EACE%22,%22file%22:%22title.css%22%7D */

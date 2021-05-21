@@ -1,0 +1,34 @@
+.white-back {
+  background: var(--blanco-fondo-primario) 0% 0% no-repeat padding-box !important;
+}
+
+.package-container {
+  background: var(--grisulado-1-fondo-secundario) 0% 0% no-repeat padding-box;
+  height: 100%;
+  display: block;
+  @include base-container();
+  .package {
+    height: 100%;
+    @include base-content();
+    padding: 0;
+    .row {
+      overflow: hidden;
+      margin: 0;
+    }
+    #pkg-main-info,
+    #pkg-secondary-info,
+    #pkg-recent-activity,
+    #pkg-related {
+      margin-bottom: -99999px;
+      padding-bottom: 99999px;
+    }
+  }
+}
+
+@import 'snippets/main_info';
+@import 'snippets/secondary_info';
+@import 'snippets/recent_activity';
+
+.display-block {
+  display: block;
+}

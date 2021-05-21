@@ -1,0 +1,10 @@
+<div class="filters-container col-md-4">
+    <div class="hidden-md hidden-lg hide-filters-button">
+        <i class="icon-chevron-left"></i>
+    </div>
+    {{ h.snippet('package/snippets/search_order.html', title='Ordenar por', name='order') }}
+    {{ h.snippet('package/snippets/search_facets_groups.html', title='Temas', name='groups') }}
+    {{ h.snippet('package/snippets/search_facets.html', title='Organizaciones', name='organization') }}
+    {{ h.snippet('package/snippets/search_facets.html', title='Etiquetas', name='tags') }}
+    <a class="close no-text hide-filters"><i class="icon-remove-sign"></i><span class="text">close</span></a>
+</div>

@@ -1,0 +1,115 @@
+header:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_header.js
+  contents:
+    - header.js
+
+console_message:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_console_message.js
+  contents:
+    - console_message.js
+
+replace_svg:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_replace_svg.js
+  contents:
+    - replace_svg.js
+  extra:
+    preload:
+      - vendor/jquery
+
+forms:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_forms.js
+  extra:
+    preload:
+      - vendor/jquery
+  contents:
+    - forms/custom_popup.js
+    - forms/confirm_delete.js
+    - forms/resource_form.js
+    - forms/resource_reorder.js
+    - forms/upload_input_fix.js
+
+libs:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_libs.js
+  extra:
+    preload:
+      - vendor/jquery
+  contents:
+    - libs/bootstrap-datepicker.js
+    - libs/bootstrap_scripts.js
+    - libs/vivus.js
+    - libs/vissense.js
+
+search:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_search.js
+  extra:
+    preload:
+      - gobar_js/replace_svg
+      - vendor/jquery
+  contents:
+    - search/groups.js
+    - search/filters.js
+
+home_404:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_home_404.js
+  contents:
+    - home/404.js
+
+groups_home:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_groups_home.js
+  extra:
+    preload:
+      - gobar_js/replace_svg
+      - vendor/jquery
+  contents:
+    - home/groups.js
+
+group:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_group.js
+  extra:
+    preload:
+      - gobar_js/replace_svg
+      - vendor/jquery
+  contents:
+    - group/form_actions.js  
+
+background_ie:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_background_ie.js
+  extra:
+    preload:
+      - vendor/jquery
+
+  contents:
+    - background_ie.js
+
+package:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_package.js
+  extra:
+    preload:
+      - gobar_js/replace_svg
+      - vendor/jquery
+  contents:
+    - package/form_actions.js
+    - package/resource/form_actions.js
+    - package/activity.js
+    - package/resource.js
+    - package/groups.js
+
+organization:
+  filters: rjsmin
+  output: ckanext-gobar-theme/%(version)s_organization.js
+  extra:
+    preload:
+      - vendor/jquery
+  contents:
+    - organization/form_actions.js

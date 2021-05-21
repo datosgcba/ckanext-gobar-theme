@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("/font/Roboto-Regular-webfont.eot");
+  src: url("/font/Roboto-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("/font/Roboto-Regular-webfont.woff") format("woff"), url("/font/Roboto-Regular-webfont.ttf") format("truetype"), url("/font/Roboto-Regular-webfont.svg#RobotoRegular") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("/font/Roboto-Light-webfont.eot");
+  src: url("/font/Roboto-Light-webfont.eot?#iefix") format("embedded-opentype"), url("/font/Roboto-Light-webfont.woff") format("woff"), url("/font/Roboto-Light-webfont.ttf") format("truetype"), url("/font/Roboto-Light-webfont.svg#RobotoLight") format("svg");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("/font/Roboto-Medium-webfont.eot");
+  src: url("/font/Roboto-Medium-webfont.eot?#iefix") format("embedded-opentype"), url("/font/Roboto-Medium-webfont.woff") format("woff"), url("/font/Roboto-Medium-webfont.ttf") format("truetype"), url("/font/Roboto-Medium-webfont.svg#RobotoMedium") format("svg");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../sass/fonts.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;EACI;EACA;EACA;EAIA;EACA;;AAGJ;EACI;EACA;EACA;EAIA;EACA;;AAGJ;EACI;EACA;EACA;EAIA;EACA%22,%22file%22:%22fonts.css%22%7D */

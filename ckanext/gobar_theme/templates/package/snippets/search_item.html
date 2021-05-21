@@ -1,0 +1,37 @@
+{%- set truncate_maintainer = 150 -%}
+{%- set truncate_description = 250 -%}
+{%- set title = package.title or package.name -%}
+{%- set notes = h.markdown_extract(package.notes, extract_length=truncate) -%}
+
+<a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="dataset-item">
+    <div class="dataset-container">
+        <div class="dataset-border container-fluid">
+            <div class="restricted-max-width">
+                <div class="dataset-content col-xs-12">
+                    <div class="dataset-author" style="color: var(--grisulado-90-texto-primario) !important;">{{
+                        h.cut_text(package.author, 150) }}</div>
+                    <h3 class="dataset-title">{{ title }}</h3>
+
+                    <div class="dataset-notes">{{ h.cut_text(notes, 190)|urlize }}</div>
+                    <br>
+                </div>
+            </div>
+            {%- for group in package.groups -%}
+                {%- if group.image_display_url and group.image_display_url|length > 0 -%}
+                    <img src="{{ group.image_display_url }}" title="{{ group.title }}" class="group-image" style="width: 20px;">
+                {%- endif -%}
+            {%- endfor -%}
+            <span style="color: black">&nbsp;|</span>
+            {%- for original_format in h.dict_list_reduce(package.resources, 'format') -%}
+                {% if original_format == "" or original_format|lower not in h.accepted_mime_types() %}
+                    {% set display_format = "otro" %}
+                {% else %}
+                    {% set display_format = original_format %}
+                {% endif %}
+            <span data-format="{{ display_format.lower() }}">{{ display_format.lower() }}</span>
+            {%- endfor -%}
+
+        </div>
+
+    </div>
+</a>

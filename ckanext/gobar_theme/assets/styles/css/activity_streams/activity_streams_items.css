@@ -1,0 +1,18 @@
+ul.activity {
+  background: none;
+  margin-bottom: 30px;
+}
+ul.activity li.item {
+  padding: 0 0 5px 0;
+  border-bottom: solid 1px #eaeced;
+  margin: 0 0 5px 0;
+  display: none;
+}
+ul.activity li.item p {
+  margin: 5px;
+}
+ul.activity li.load-more {
+  display: none !important;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../sass/activity_streams/activity_streams_items.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;EACE;EACA;;AACA;EACE;EACA;EACA;EACA;;AACA;EACE;;AAGJ;EACE%22,%22file%22:%22activity_streams_items.css%22%7D */

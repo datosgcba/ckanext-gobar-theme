@@ -1,0 +1,44 @@
+{%- ckan_extends -%}
+
+{%- block styles -%}
+    {{ super() }}
+    {% asset 'gobar_css/gobar_style' %}
+    {% asset 'gobar_css/gcba_theme' %}
+{%- endblock -%}
+
+{%- block meta -%}
+    {{ super() }}
+
+    <meta property="og:url" content="https://data.buenosaires.gob.ar/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Buenos Aires Data">
+    <meta property="og:site_name" content="Buenos Aires Data">
+    <meta property="og:description"
+          content="Abrimos los datos que produce la Ciudad para que puedas desarrollar aplicaciones, contar historias y poner en valor los datos de Buenos Aires.">
+    <meta property="og:image" content="https://data.buenosaires.gob.ar">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="2400">
+    <meta property="og:image:height" content="1260">
+    <meta property="og:locale" content="es_AR">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@BAGobAbierto"/>
+    {% block twitter_title -%}
+        <meta name="twitter:title" content="Buenos Aires Data">
+    {%- endblock %}
+    {% block twitter_img -%}
+        <meta name="twitter:description"
+              content="Abrimos los datos que produce la Ciudad para que puedas desarrollar aplicaciones, contar historias y poner en valor los datos de Buenos Aires.">
+    {%- endblock %}
+    {% block twitter_description -%}
+        <meta name="twitter:image:src" content="https://data.buenosaires.gob.ar">
+    {%- endblock %}
+{%- endblock -%}
+
+{%- block title -%}
+    Buenos Aires Data {%- block subtitle -%}{%- endblock -%}
+{%- endblock -%}
+
+{%- block links -%}
+    <link rel="shortcut icon" href="/favicon.png" type="image/png"/>
+{%- endblock -%}

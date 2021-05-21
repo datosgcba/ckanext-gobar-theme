@@ -1,0 +1,32 @@
+#new-group-container #new-group form .control-group #field-image-upload,
+#edit-group-container #edit-group form .control-group #field-image-upload,
+#new-package-container #new-package form .control-group #field-image-upload,
+#edit-package-container #edit-package form .control-group #field-image-upload {
+  left: -99999px;
+}
+#new-group-container #new-group form .control-group .file-upload-label,
+#edit-group-container #edit-group form .control-group .file-upload-label,
+#new-package-container #new-package form .control-group .file-upload-label,
+#edit-package-container #edit-package form .control-group .file-upload-label {
+  display: inline-block;
+  width: auto;
+  margin-right: 10px;
+}
+#new-group-container #new-group form .control-group .url-btn, #new-group-container #new-group form .control-group .upload-btn,
+#edit-group-container #edit-group form .control-group .url-btn,
+#edit-group-container #edit-group form .control-group .upload-btn,
+#new-package-container #new-package form .control-group .url-btn,
+#new-package-container #new-package form .control-group .upload-btn,
+#edit-package-container #edit-package form .control-group .url-btn,
+#edit-package-container #edit-package form .control-group .upload-btn {
+  margin-left: 0;
+  text-transform: uppercase;
+}
+#new-group-container #new-group form .control-group .upload-btn,
+#edit-group-container #edit-group form .control-group .upload-btn,
+#new-package-container #new-package form .control-group .upload-btn,
+#edit-package-container #edit-package form .control-group .upload-btn {
+  margin: 0;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../sass/forms/file_upload.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAMM;AAAA;AAAA;AAAA;EACE;;AAEF;AAAA;AAAA;AAAA;EACE;EACA;EACA;;AAEF;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;EACE;EACA;;AAEF;AAAA;AAAA;AAAA;EACE%22,%22file%22:%22file_upload.css%22%7D */

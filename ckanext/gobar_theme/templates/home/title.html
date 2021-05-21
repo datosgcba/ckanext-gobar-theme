@@ -1,0 +1,42 @@
+{% set stats = h.get_site_statistics() %}
+
+<div id="title" class="container-fluid">
+    <div>
+        <div class="restricted-max-width">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div id="title-container" class="col-xs-12 col-md-7">
+                    <h1>Buenos Aires Data</h1>
+
+                    <p class="description">
+                        Abrimos los datos que produce la Ciudad para que puedas desarrollar aplicaciones, contar
+                        historias y poner en valor los datos de Buenos Aires.
+                    </p>
+                </div>
+                <div id="searcher" class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-0 col-lg-4 no-padding">
+                    <form class="module-content search-form" method="get"
+                        action="{% url_for controller='dataset', action='search' %}">
+                        <input type="text" class="search" name="q" value="" autocomplete="off"
+                            placeholder="¿Qué dataset buscás?" maxlength="200" />
+                        <button type="submit">
+                            <img src="/img/search.svg" class="search-icon">
+                        </button>
+                    </form>
+                </div>
+                <div id="stats" class="hidden-xs col-sm-12 col-md-4 col-md-offset-1">
+                    <div class="col-sm-4 col-sm-offset-2 col-md-12 col-md-offset-0">
+                        <p class="stat">{{ "%03d" % stats.dataset_count }}</p>
+
+                        <p class="stats-legend datasets">DATASETS</p>
+                    </div>
+                    <div class="col-sm-4 col-md-12">
+                        <p class="stat organizations">{{ "%03d" % h.organizations_with_packages() }}</p>
+
+                        <p class="stats-legend">ORGANIZACIONES<br> CON DATOS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% asset 'gobar_js/background_ie' %}

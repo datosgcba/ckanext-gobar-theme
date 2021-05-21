@@ -11,7 +11,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-.python-version
 env/
 build/
 develop-eggs/
@@ -20,7 +19,6 @@ sdist/
 *.egg-info/
 .installed.cfg
 *.egg
-.idea
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -42,5 +40,8 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+.sass-cache
+.idea
+mockups
 
-.DS_Store
+ckanext/gobar_theme/public/user_images

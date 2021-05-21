@@ -1,0 +1,19 @@
+gobar_style:
+  filters: jinja2
+  output: ckanext-gobar-theme/gobar_style.css
+  contents:
+    - css/gobar_style.css
+
+gcba_theme:
+  filters: jinja2
+  output: ckanext-gobar-theme/gcba_theme.css
+  contents:
+    - css/bastrap.css
+    - css/gcba_theme.css
+    - css/ba_data.css
+
+gobar_recline:
+  filters: cssrewrite
+  output: ckanext-gobar-theme/gobar_recline.css
+  contents:
+    - css/gobar_recline.css    

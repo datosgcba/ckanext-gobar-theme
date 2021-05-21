@@ -1,0 +1,50 @@
+<div id="pkg-main-info" class="col-xs-12 col-md-8">
+    <div id="pkg-path">
+        <a href="{{ h.url_for(controller='dataset', action='search') }}">Buenos Aires Data</a> / Dataset
+    </div>
+    <div id="pkg-title-and-desc">
+        {% if h.check_access('package_update', {'id':pkg.id }) %}
+            {% link_for 'EDITAR DATASET',  named_route=pkg.type ~ '.edit', id=pkg.name, class_='btn btn-blue edit-button' %}
+        {% endif %}
+        <h1 class="pkg-title">{{ pkg.title }}</h1>
+
+        <p class="pkg-author">
+            {{ pkg.author }}
+            {% if pkg.author_email %}
+                <a href="mailto:{{ pkg.author_email }}">
+                    {% snippet "svg/mail.svg" %}
+                </a>
+            {% endif %}
+        </p>
+
+        <p class="pkg-notes">{{ pkg.notes }}</p>
+
+        {% if h.check_access('package_update', {'id':pkg.id }) %}
+            {% link_for 'AGREGAR NUEVO RECURSO',  named_route=pkg.type ~ '_resource.new', id=pkg.name, class_='btn btn-blue add-resource' %}
+            {% link_for 'ADMINISTRAR RECURSOS', named_route=pkg.type ~ '.resources', id=pkg.name, class_='btn btn-blue resources' %}
+        {% endif %}
+
+        <h2 class="pkg-resources-title">Recursos del dataset</h2>
+    </div>
+
+    <div id="pkg-resources">
+        {% for resource in pkg.resources %}
+            {% set mostrar = true %}
+            {% if resource.format == "" or resource.format|lower not in h.accepted_mime_types() %}
+                {% if resource.datastore_active == False and resource.url == "" and resource.description == "" and resource.has_views == False and resource.position == 0 %}
+                    {% set mostrar = false %}
+                {% else %}    
+                    {% set format = "otro" %}
+                {% endif %}
+            {% else %}
+                {% set format = resource.format %}
+            {% endif %}
+            {% if mostrar %}
+                {% snippet "package/snippets/dataset_resource_item.html", pkg=pkg, resource=resource, format=format, is_activity_archive=is_activity_archive %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+</div>
+
+{% asset 'gobar_js/package' %}
