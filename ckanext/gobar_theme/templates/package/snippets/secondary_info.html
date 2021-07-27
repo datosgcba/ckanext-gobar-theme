@@ -67,10 +67,28 @@
             {% endfor %}
         {% endif %}
 
-        {% if pkg.maintainer|length > 0 %}
+        {% if pkg.author|length > 0 %}
             <div class="row">
                 <div class="col-xs-5 title">
                     Responsable
+                </div>
+                <div class="col-xs-7 value">
+                    <p class="pkg-maintainer">
+                        {{ pkg.author }}
+                        {% if pkg.author_email %}
+                            <a href="mailto:{{ pkg.author_email }}">
+                                {% snippet "svg/mail.svg" %}
+                            </a>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        {% endif %}        
+
+        {% if pkg.maintainer|length > 0 %}
+            <div class="row">
+                <div class="col-xs-5 title">
+                    Mantenedor
                 </div>
                 <div class="col-xs-7 value">
                     <p class="pkg-maintainer">
