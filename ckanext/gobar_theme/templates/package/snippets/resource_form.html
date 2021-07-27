@@ -46,8 +46,13 @@
             {{ form.markdown_custom('description', id='field-description', label='Descripción del recurso', placeholder='Ej: Detalle de los pedidos de información hechos al Estado en 2015.', value=data.description, error=errors.description, attrs={'data-valid-desc-length': max_length_description}, after_desc=after_desc_description|join|safe, max_length=max_length_description) }}
         {% endblock %}
 
+        {% block basic_fields_type %}
+            {{ form.select('type', label=_('Tipo de recurso'), 
+                options=[{'name':'archivo', 'value': 'Archivo de datos'},{'name': 'API', 'value': 'API'},{'name':'codigo', 'value': 'Código'},{'name':'documentacion', 'value': 'Documentación'}], selected='archivo', error=errors.type) }}
+        {% endblock %}
+
         {% block basic_fields_url %}
-        {{ form.image_upload(data, errors, field_url='url', field_upload='upload', field_clear='clear_upload', is_upload_enabled=false, is_url=data.url, url_label=_('URL'),placeholder=_('http://example.com/external-data.csv'), field_name='name') }}
+            {{ form.input('url', label=_('URL'), value=data.url, error=errors.url, placeholder=_('http://example.com/external-data.csv')) }}
         {% endblock %}
 
         {% block basic_fields_filename %}
