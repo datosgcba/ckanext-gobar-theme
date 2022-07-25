@@ -192,7 +192,8 @@ def update_frequencies():
         "R/P1D": "Diariamente",
         "R/PT1H": "Cada hora",
         "R/PT1S": "Continuamente actualizado",
-        'eventual': 'Eventual'
+        'eventual': 'Eventual',
+        'historico': 'Histórico'
     }
 
 
