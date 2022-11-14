@@ -38,7 +38,7 @@ def get_faceted_groups():
     data_dict_page_results = {
         'all_fields': True,
         'type': 'group',
-        'limit': None,
+        #'limit': None,
         'offset': 0,
     }
     groups = logic.get_action('group_list')({}, data_dict_page_results)
@@ -53,7 +53,7 @@ def get_faceted_groups():
             group['facet_count'] = facets_by_name[group['name']]['count']
         else:
             group['facet_active'] = False
-            group['facet_count'] = 0
+            group['facet_count'] = group['package_count']
     return groups
 
 
