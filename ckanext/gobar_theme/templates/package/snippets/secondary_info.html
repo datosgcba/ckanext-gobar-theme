@@ -156,20 +156,6 @@
         </div>
         {% endif %}
     </div>
-
-    <div id="pkg-recent-activity">
-        <h2 class="recent-activity-title">Actividad reciente</h2>
-        {% set activity_stream = h.dashboard_activity_stream(user_id=c.user,filter_type='dataset', filter_id=pkg.id) %}
-        {% snippet 'snippets/activity_stream.html', activity_stream=activity_stream, id=pkg.id, object_type='package' %}
-        <p class="activity-read-more">
-            {{ h.snippet('svg/flecha_abajo.svg') }}
-            Mostrar más
-            {{ h.snippet('svg/flecha_abajo.svg') }}
-        </p>
-
-        <p class="activity-loading hidden">Cargando</p>
-        <hr class="final-separator">
-    </div>
 </div>
 
 {% asset 'gobar_js/package' %}
