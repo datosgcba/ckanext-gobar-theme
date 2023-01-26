@@ -156,6 +156,12 @@
         </div>
         {% endif %}
     </div>
+    <div class="content_action">
+        <a class="btn btn-primary" title="Contact" data-module="modal-contact" data-module-template="contact_form.html" data-module-action="contact_form">
+            Contact dataset curator
+            {% snippet "contact/snippets/modal_link.html"%}
+        </a>
+    </div>
 </div>
 
 {% asset 'gobar_js/package' %}
