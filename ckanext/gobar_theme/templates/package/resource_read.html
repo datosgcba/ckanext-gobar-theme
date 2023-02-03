@@ -139,7 +139,7 @@
                         Último cambio
                     </div>
                     <div class="col-xs-6 value">
-                        {{ h.render_ar_datetime(res.last_modified) or h.render_ar_datetime(res.revision_timestamp) or
+                        {{ h.render_ar_datetime(res.metadata_modified) or h.render_ar_datetime(res.revision_timestamp) or
                         h.render_ar_datetime(res.created) or _('unknown') }}
                     </div>
                 </div>
