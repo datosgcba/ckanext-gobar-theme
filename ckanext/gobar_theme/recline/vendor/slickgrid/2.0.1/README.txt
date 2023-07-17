@@ -5,7 +5,7 @@ java -jar compiler.jar --js=slick.core.js --js=slick.grid.js --js=slick.editors.
 
 There are two other files required for the SlickGrid view to work properly:
 
- * jquery-ui-1.8.16.custom.min.js 
+ * jquery-ui-1.13.2.min.js 
  * jquery.event.drag-2.0.min.js
 
 These are included in the Recline source, but have not been included in the
