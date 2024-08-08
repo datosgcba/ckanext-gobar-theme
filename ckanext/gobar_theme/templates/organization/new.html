@@ -10,7 +10,7 @@
                     <div class="back-btn">
                         {% set referer_url = request.headers.Referer %}
                         {% set current_url = request.path_url %}
-                        <a href="{{ referer_url if referer_url and referer_url != current_url else h.url('home.index') }}">
+                        <a href="{{ referer_url if referer_url and referer_url != current_url else h.url_for('home.index') }}">
                             <i class="icon-chevron-left"></i>
                             VOLVER
                         </a>

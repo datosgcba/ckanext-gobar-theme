@@ -29,7 +29,7 @@
 
 {% if error %}
 <p class="search-error"><strong>Ha ocurrido un error con la busqueda.</strong></p>
-<p>Por favor trate de vuelta y si el problema persiste <a href="{{ h.url('gobar_contacto') }}">contactenos</a>.</p>
+<p>Por favor trate de vuelta y si el problema persiste <a href="{{ h.url_for('gobar_contacto') }}">contactenos</a>.</p>
 {% else %}
 {% if count == 0 %}
 <p class="extra">
