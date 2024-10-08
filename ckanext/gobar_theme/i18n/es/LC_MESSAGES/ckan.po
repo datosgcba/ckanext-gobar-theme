@@ -23,3 +23,34 @@ msgstr "No se pudo conectar al DataPusher."
 msgid "Process completed but unable to post to result_url"
 msgstr "Proceso completo pero no se pudo enviar a result_url."
 
+
+#: ckan/public/base/javascript/modules/resource-reorder.js:41
+#: ckan/templates/package/edit_base.html:18
+msgid "Reorder resources"
+msgstr "Reordenar Recursos"
+
+#: ckan/public/base/javascript/modules/resource-reorder.js:42
+msgid ""
+"You can rearrange the resources by dragging them using the arrow icon. Drag "
+"the resource to the right and place it to the desired location on the list. "
+"When you are done, click the \"Save order\" -button."
+msgstr ""
+"Puedes reorganizar los recursos arrastrándolos usando el ícono de flecha." 
+"Arrastrar el recurso a la derecha y colóquelo en la ubicación deseada en la lista".
+"Cuando haya terminado, haga clic en el botón "Guardar Orden".
+
+#: ckan/public/base/javascript/modules/resource-reorder.js:64
+#: ckan/public/base/javascript/modules/resource-view-reorder.js:54
+msgid "Save Order"
+msgstr "Guardar Orden"
+
+
+#: ckanext/activity/templates/snippets/changes/author_email.html:6
+msgid "Set author email of "
+msgstr "Establecer correo electrónico del autor de "
+
+
+#: ckanext/activity/templates/snippets/changes/author_email.html:6
+msgid "Set maintainer email of "
+msgstr "Establecer correo electrónico del mantenedor de "
+

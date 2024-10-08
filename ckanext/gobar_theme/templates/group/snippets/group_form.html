@@ -2,6 +2,7 @@
 
 <form id="group-edit" class="dataset-form form-horizontal" method="post" data-module="basic-form"
       enctype="multipart/form-data">
+    {{ h.csrf_input() }}
     {% block error_summary %}
         {{ form.errors(error_summary) }}
     {% endblock %}
@@ -37,6 +38,7 @@
                 <button type="button" class="btn btn-red" id="confirm-delete">
                     BORRAR TEMA
                 </button>
+             
             {% endif %}
         {% endblock %}
         <button class="btn btn-blue" name="save" type="submit">
@@ -50,16 +52,17 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h1>¿Querés borrar este tema?</h1>
+              {% block form %}
                 <div class="modal-actions">
-                    <form id="organization-confirm-delete-form"
-                          action="{% url_for controller='group', action='delete', id=data.id %}"
-                          method="post">
+                    <form id="group-confirm-delete-form"  action="{% url_for controller='group', action='delete', id=data.id %}" method="post">
+                          {{ h.csrf_input() }}
                         <button class="btn btn-blue" type="submit" name="delete">SÍ, BORRAR TEMA</button>
-                        <button id="dismiss-greetings" type="button" class="btn btn-blue" data-dismiss="modal">
+                        <button id="dismiss-greetings" type="button" class="btn btn-blue" data-bs-dismiss="modal">
                             NO, NO BORRAR
                         </button>
                     </form>
                 </div>
+                {% endblock %}
             </div>
         </div>
     </div>

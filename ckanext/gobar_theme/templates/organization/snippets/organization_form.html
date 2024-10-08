@@ -2,6 +2,7 @@
 
 <form id='organization-edit-form' class="dataset-form form-horizontal" method="post" data-module="basic-form"
       enctype="multipart/form-data">
+    {{ h.csrf_input() }}
     {% block error_summary %}
         {{ form.errors(error_summary) }}
     {% endblock %}
@@ -63,8 +64,9 @@
                     <form id="organization-confirm-delete-form"
                           action="{% url_for controller='organization', action='delete', id=data.name %}"
                           method="post">
+                          {{ h.csrf_input() }}
                         <button class="btn btn-blue" type="submit" name="delete">BORRAR ORGANIZACIÓN</button>
-                        <button id="dismiss-greetings" type="button" class="btn btn-blue" data-dismiss="modal">
+                        <button id="dismiss-greetings" type="button" class="btn btn-blue" data-bs-dismiss="modal">
                             NO, NO BORRAR
                         </button>
                     </form>

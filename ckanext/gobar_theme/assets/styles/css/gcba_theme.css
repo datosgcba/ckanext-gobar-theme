@@ -1,8 +1,12 @@
 /*
+
 ------------------------------------------------------------------------------------
 MIXINS::;
 ------------------------------------------------------------------------------------
 */
+
+/* revisado para la version 5.3.3*/
+
 .full {
   width: 100%;
 }
@@ -15,9 +19,7 @@ MIXINS::;
 .text-lcase {
   text-transform: lowercase;
 }
-.hidden {
-  display: none;
-}
+
 .pos-st {
   position: static;
 }

@@ -184,9 +184,9 @@ $(function () {
         $form.attr('action', '/dataset/new_draft').submit();
     });
 
-    $('#date-from, #date-to').datepicker({
+  /*  $('#date-from, #date-to').datepicker({
         language: 'es'
-    });
+    });*/
 
     $('#date_with_time').on('change', function (e) {
         var showHours = $(e.currentTarget).is(':checked');

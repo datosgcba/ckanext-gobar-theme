@@ -1,11 +1,10 @@
 # coding=utf-8
 import ckan.logic as logic
 import ckan.lib.helpers as ckan_helpers
-from urllib.parse import urlparse
 from ckan.common import request, c, g, _
 import json
 from urllib.parse import urljoin
-
+import ckan.plugins.toolkit as toolkit
 
 def _get_organizations_objs(organizations_branch, depth=0):
     organizations = []
@@ -159,7 +158,7 @@ def render_ar_datetime(datetime_):
         'day': datetime_.day,
         'year': datetime_.year,
         'month': months[datetime_.month - 1],
-        'timezone': datetime_.tzinfo.zone,
+        'timezone': 'UTC',
     }
     return _('{day} de {month} de {year}').format(**details)
 
@@ -258,3 +257,7 @@ def attributes_has_at_least_one(attr, resource_attributes):
         if len(attributes.get(attr, '')) > 0:
             return True
     return False
+
+def get_site_statistics():
+    countPackages = len(toolkit.get_action(u'package_list')({},{}))
+    return {"dataset_count": countPackages}

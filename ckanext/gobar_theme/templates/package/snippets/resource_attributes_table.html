@@ -1,7 +1,7 @@
 {% set attributes = h.json_loads(res['attributesDescription'] or '[]') %}
 {% set hasAtLeastOneUnit = h.attributes_has_at_least_one('unit', attributes) %}
 {% set hasAtLeastOneId = h.attributes_has_at_least_one('id', attributes) %}
-
+ 
 {% if attributes|length > 0 %}
 <div class="resource-attributes col-xs-12 no-padding">
     <h2>Campos del recurso</h2>

@@ -3,6 +3,7 @@
 
 <form novalidate="novalidate" id="dataset-edit" class="dataset-form form-horizontal" method="post" action="{{ action }}"
     data-module="basic-form">
+    {{ h.csrf_input() }}
     {% block stages %}
     {{ h.snippet('package/snippets/stages.html', stages=stage) }}
     {% endblock %}
@@ -59,7 +60,7 @@
                         <button class="btn btn-blue" type="submit" name="delete">
                             SI, BORRAR DATASET
                         </button>
-                        <button id="dismiss-greetings" type="button" class="btn btn-blue" data-dismiss="modal">
+                        <button id="dismiss-greetings" type="button" class="btn btn-blue" data-bs-dismiss="modal">
                             NO, NO BORRAR
                         </button>
                     </form>

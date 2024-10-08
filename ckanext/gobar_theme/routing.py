@@ -60,6 +60,7 @@ class GobArRouter:
         self.redirect(
             ('/dataset/history/{id:.*?}', '/dataset/{id}'),
             ('/dataset/activity/{id:.*?}', '/dataset/{id}'),
+            ('/dataset/changes/{id:.*?}', '/dataset/{id}'),
             ('/dataset/groups/{id:.*?}', '/dataset/{id}'),
             ('/dataset/followers/{id:.*?}', '/dataset/{id}'),
             ('/dataset/{id}/resource/{resource_id}', '/dataset/{id}/archivo/{resource_id}')

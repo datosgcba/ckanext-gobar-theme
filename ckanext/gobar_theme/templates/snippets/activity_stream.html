@@ -1,4 +1,6 @@
+
 {% macro actor(activity) %}
+
   <span class="actor">
     {{ h.linked_user(activity.user_id, 0, 30) }}
   </span>
@@ -57,4 +59,4 @@ object_type - 'package', 'organization', 'group', 'user'
     -%}
   {% endfor %}
   </ul>
-{% endblock %}
+{% endblock %} 

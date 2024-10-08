@@ -19,8 +19,8 @@
                     <div class="form-like">
                         {% if c.pkg_dict.resources %}
                             <div class="page_primary_action action-buttons"></div>
-                            <div class="spacer"></div>
-                            <ul class="resource-list"{% if has_reorder %} data-module="resource-reorder"
+                            <div class="spacer"></div>                          
+                            <ul class="resource-list"{% if has_reorder %} data-module="resource-reorder-badata"
                                 data-module-id="{{ c.pkg_dict.id }}"{% endif %}>
                                 {% for resource in c.pkg_dict.resources %}
                                     {% snippet 'package/snippets/resource_item.html', pkg=c.pkg_dict, res=resource, url_is_edit=true %}
@@ -47,5 +47,6 @@
     {% if has_reorder %}
         {% asset 'vendor/reorder' %}
         {% asset 'gobar_js/forms' %}
+        {% asset 'gobar_js/package' %}
     {% endif %}
 {% endblock %}

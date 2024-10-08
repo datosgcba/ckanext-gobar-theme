@@ -51,6 +51,6 @@ $(function () {
     $('form#organization-edit-form').submit(function () {
         submit_count++;
         return formIsValid();
-    });
-
+    });    
+  
 });

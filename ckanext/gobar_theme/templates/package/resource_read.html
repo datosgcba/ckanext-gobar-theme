@@ -36,32 +36,32 @@
                 <h1 class="pkg-title">{{ res.name }}</h1>
 
                 <p class="pkg-author">{{ res.description }}</p>
-                <a href="{{ res.url }}">
-                    <button>DESCARGAR</button>
-                </a>
+                {% if res.url !=  "" %}
+                    <a href="{{ res.url }}">
+                        <button>DESCARGAR</button>
+                    </a>
+                {% endif %}
             </div>
             <div class="data-preview hidden col-md-12">
-                {% set resource_preview = h.resource_preview(c.resource, c.package) %}
+              
                 {% snippet "package/snippets/resource_views_list.html",
                 views=resource_views,
                 pkg=pkg,
                 is_edit=false,
                 view_id=current_resource_view['id'],
-                resource_preview=resource_preview,
                 resource=c.resource,
                 extra_class="nav-tabs-plain" %}
-                {% set resource_preview = h.resource_preview(c.resource, c.package) %}
-                {% set views_created = res.has_views or resource_preview %}
+               
+                {% set views_created = res.has_views  %}
                 {% if views_created %}
-                    {% if resource_preview and not current_resource_view %}
-                        {{ h.resource_preview(c.resource, c.package) }}
-                    {% else %}
+                    {% if resource_views %}
                         {% for resource_view in resource_views %}
                             {% if resource_view == current_resource_view %}
                                 {% snippet 'package/snippets/resource_view.html',
-                                            resource_view=resource_view,
-                                            resource=resource,
-                                            package=package %}
+                                resource_view=resource_view,
+                                resource=resource,
+                                package=package
+                                %}
                             {% endif %}
                         {% endfor %}
                     {% endif %}
@@ -89,29 +89,41 @@
 
             {% snippet "package/snippets/resource_attributes_table.html", res=res %}
 
-            {% set has_more_resources = pkg.resources and pkg.resources|length > 1 %}
+            {% set has_more_resources = pkg.resources and (pkg.resources|length > 1) %}
 
             {% if has_more_resources %}
-            <div class="resource-alternative-packages col-xs-12 col-md-12">
-                <h2>Otros recursos de este conjunto de datos</h2>
                 {% for resource in pkg.resources %}
-                    {% set mostrar = true %}
+                    {% set mostrardiv = true %}
                     {% if resource.id != res.id %}
                         {% if resource.format == "" or resource.format|lower not in h.accepted_mime_types() %}
                             {% if resource.datastore_active == False and resource.url == "" and resource.description == "" and resource.position == 0 %}
-                                {% set mostrar = false %}
-                            {% else %}    
-                                {% set format = "otro" %}
-                            {% endif %}
-                        {% else %}
-                            {% set format = resource.format %}
-                        {% endif %}
-                        {% if mostrar %}
-                            {% snippet "package/snippets/dataset_resource_item.html", pkg=pkg, resource=resource, format=format %}
-                        {% endif %}
+                                {% set mostrardiv = false %}
+                            {% endif %}                        
+                        {% endif %}                       
                     {% endif %}
                 {% endfor %}
-            </div>
+                {% if mostrardiv %}
+                    <div class="resource-alternative-packages col-xs-12 col-md-12">
+                        <h2>Otros recursos de este conjunto de datos </h2>
+                        {% for resource in pkg.resources %}
+                            {% set mostrar = true %}
+                            {% if resource.id != res.id %}
+                                {% if resource.format == "" or resource.format|lower not in h.accepted_mime_types() %}
+                                    {% if resource.datastore_active == False and resource.url == "" and resource.description == "" and resource.position == 0 %}
+                                        {% set mostrar = false %}
+                                    {% else %}    
+                                        {% set format = "otro" %}
+                                    {% endif %}
+                                {% else %}
+                                    {% set format = resource.format %}
+                                {% endif %}
+                                {% if mostrar %}
+                                    {% snippet "package/snippets/dataset_resource_item.html", pkg=pkg, resource=resource, format=format %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
             {% endif %}
 
             <div class="resource-additional-info col-xs-12 col-md-12">

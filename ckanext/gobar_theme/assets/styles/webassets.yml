@@ -16,4 +16,4 @@ gobar_recline:
   filters: cssrewrite
   output: ckanext-gobar-theme/gobar_recline.css
   contents:
-    - css/gobar_recline.css    
+    - css/gobar_recline.css
