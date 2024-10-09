@@ -60,7 +60,6 @@ class GobArRouter:
         self.redirect(
             ('/dataset/history/{id:.*?}', '/dataset/{id}'),
             ('/dataset/activity/{id:.*?}', '/dataset/{id}'),
-            ('/dataset/changes/{id:.*?}', '/dataset/{id}'),
             ('/dataset/groups/{id:.*?}', '/dataset/{id}'),
             ('/dataset/followers/{id:.*?}', '/dataset/{id}'),
             ('/dataset/{id}/resource/{resource_id}', '/dataset/{id}/archivo/{resource_id}')
@@ -116,8 +115,7 @@ class GobArRouter:
         self.route_map.connect('user_datasets', '/user/{id:.*}', action='read',
                                controller='ckanext.gobar_theme.controller:GobArUserController')
         self.redirect(
-            ('/ingresar', '/user/login'),
-            ('/user/login', '/'),
+            ('/user/login', '/dashboard'),
             ('/user/generate_key/{id}', '/'),
             ('/user/activity/{id}/{offset}', '/'),
             ('/user/activity/{id}', '/'),
