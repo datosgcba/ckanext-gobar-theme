@@ -68,11 +68,11 @@ class GobArPackageController(PackageController):
         except NotAuthorized:
             abort(401, _('Not authorized to see this page'))
 
-        q = c.q = request.params.get('q', u'')
+        q = c.q = request.args.get('q', u'')
         c.query_error = False
-        page = self._get_page_number(request.params)
+        page = self._get_page_number(request.args)
         limit = g.datasets_per_page
-        params_nopage = [(k, v) for k, v in request.params.items() if k != 'page']
+        params_nopage = [(k, v) for k, v in request.args.items() if k != 'page']
 
         def drill_down_url(alternative_url=None, **by):
             return h.add_url_param(
@@ -89,7 +89,7 @@ class GobArPackageController(PackageController):
 
         c.remove_field = remove_field
 
-        sort_by = request.params.get('sort', None)
+        sort_by = request.args.get('sort', None)
         params_nosort = [(k, v) for k, v in params_nopage if k != 'sort']
 
         def _sort_by(fields):
@@ -117,7 +117,7 @@ class GobArPackageController(PackageController):
             c.fields_grouped = {}
             search_extras = {}
             fq = ''
-            for (param, value) in request.params.items():
+            for (param, value) in request.args.items():
                 if param not in ['q', 'page', 'sort'] \
                         and len(value) and not param.startswith('_'):
                     if not param.startswith('ext_'):
@@ -196,7 +196,7 @@ class GobArPackageController(PackageController):
         for facet in c.search_facets.keys():
             try:
                 if facet != 'organization':
-                    limit = int(request.params.get('_%s_limit' % facet, g.facets_default_number))
+                    limit = int(request.args.get('_%s_limit' % facet, g.facets_default_number))
                 else:
                     limit = None
             except ValueError:
@@ -215,7 +215,7 @@ class GobArPackageController(PackageController):
         ''' FIXME: This is a temporary action to allow styling of the
         forms. '''
         if request.method == 'POST' and not data:
-            save_action = request.params.get('save')
+            save_action = request.args.get('save')
             data = data or \
                    clean_dict(dict_fns.unflatten(tuplize_dict(parse_params(
                        request.POST))))
@@ -351,7 +351,7 @@ class GobArPackageController(PackageController):
 
         context = {'model': model, 'session': model.Session,
                    'user': c.user or c.author, 'auth_user_obj': c.userobj,
-                   'save': 'save' in request.params}
+                   'save': 'save' in request.args}
 
         # Package needs to have a organization group in the call to
         # check_access and also to save it
@@ -364,7 +364,7 @@ class GobArPackageController(PackageController):
             return self._save_new(context, package_type=package_type)
 
         data = data or clean_dict(dict_fns.unflatten(tuplize_dict(parse_params(
-            request.params, ignore_keys=CACHE_PARAMETERS))))
+            request.args, ignore_keys=CACHE_PARAMETERS))))
         c.resources_json = h.json.dumps(data.get('resources', []))
         # convert tags if not supplied in data
         if data and not data.get('tag_string'):
@@ -381,8 +381,8 @@ class GobArPackageController(PackageController):
 
         # if we are creating from a group then this allows the group to be
         # set automatically
-        data['group_id'] = request.params.get('group') or \
-                           request.params.get('groups__0__id')
+        data['group_id'] = request.args.get('group') or \
+                           request.args.get('groups__0__id')
 
         form_snippet = self._package_form(package_type=package_type)
         form_vars = {'data': data, 'errors': errors,
@@ -412,7 +412,7 @@ class GobArPackageController(PackageController):
         # partially created so we need to know if we actually are updating or
         # this is a real new.
         is_an_update = False
-        ckan_phase = request.params.get('_ckan_phase')
+        ckan_phase = request.args.get('_ckan_phase')
         from ckan.lib.search import SearchIndexError
         try:
             data_dict = clean_dict(dict_fns.unflatten(
@@ -436,17 +436,17 @@ class GobArPackageController(PackageController):
                     # this is actually an edit not a save
                     pkg_dict = get_action('package_update')(context, data_dict)
 
-                    if request.params['save'] == 'go-metadata':
+                    if request.args['save'] == 'go-metadata':
                         # redirect to add metadata
                         url = h.url_for(controller='package', action='new_metadata', id=pkg_dict['name'])
-                    elif request.params['save'] == 'save-draft':
+                    elif request.args['save'] == 'save-draft':
                         url = h.url_for(controller='package', action='read', id=pkg_dict['name'])
                     else:
                         # redirect to add dataset resources
                         url = h.url_for(controller='package', action='new_resource', id=pkg_dict['name'])
                     redirect(url)
                 # Make sure we don't index this dataset
-                if request.params['save'] not in ['go-resource', 'go-metadata']:
+                if request.args['save'] not in ['go-resource', 'go-metadata']:
                     data_dict['state'] = 'draft'
                 # allow the state to be changed
                 context['allow_state_change'] = True
@@ -455,10 +455,10 @@ class GobArPackageController(PackageController):
             context['message'] = data_dict.get('log_message', '')
             pkg_dict = get_action('package_create')(context, data_dict)
 
-            if ckan_phase and request.params['save'] != 'save-draft':
+            if ckan_phase and request.args['save'] != 'save-draft':
                 url = h.url_for(controller='package', action='new_resource', id=pkg_dict['name'])
                 redirect(url)
-            elif request.params['save'] == 'save-draft':
+            elif request.args['save'] == 'save-draft':
                 url = h.url_for(controller='package', action='read', id=pkg_dict['name'])
                 redirect(url)
             self._form_save_redirect(pkg_dict['name'], 'new', package_type=package_type)
@@ -491,7 +491,7 @@ class GobArPackageController(PackageController):
         package_type = self._get_package_type(id)
         context = {'model': model, 'session': model.Session,
                    'user': c.user, 'auth_user_obj': c.userobj,
-                   'save': 'save' in request.params}
+                   'save': 'save' in request.args}
 
         if context['save'] and not data:
             return self._save_edit(id, context, package_type=package_type)

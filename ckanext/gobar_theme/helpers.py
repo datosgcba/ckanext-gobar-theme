@@ -134,7 +134,7 @@ def organization_filters():
                                       organization['count'] > 0]
     sorted_organizations = sorted(top_organizations_with_results, key=lambda item: item['count'], reverse=True)
 
-    limit = int(request.params.get('_organization_limit', g.facets_default_number))
+    limit = int(request.args.get('_organization_limit', g.facets_default_number))
     c.search_facets_limits['organization'] = limit
     if limit is not None and limit > 0:
         return sorted_organizations[:limit]
