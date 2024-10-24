@@ -8,17 +8,22 @@ from flask import Blueprint
 
 class Gobar_ThemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IActions)
     plugins.implements(plugins.IBlueprint)
 
     def get_actions(self):
-        return {'package_activity_list_html': gobar_actions.package_activity_list_html,
-                'group_delete': gobar_actions.group_delete_and_purge,
-                'package_delete': gobar_actions.dataset_delete_and_purge,
-                'resource_delete': gobar_actions.resource_delete_and_purge,
-                'organization_delete': gobar_actions.organization_delete_and_purge
-                }
+        return {'package_activity_list_html': gobar_actions.package_activity_list_html}
+
+
+    #se eliminaron las llamadas a estos actions ya que chocaban contra las acciones de ckan
+    #'group_delete': gobar_actions.group_delete_and_purge,
+    # 'package_delete': gobar_actions.dataset_delete_and_purge,
+    # 'resource_delete': gobar_actions.resource_delete_and_purge,
+    # 'organization_delete': gobar_actions.organization_delete_and_purge
+    #'resource_delete': gobar_actions.resource_delete_and_purge
+
 
     def before_map(self, routing_map):
         gobar_router = gobar_routes.GobArRouter(routing_map)
@@ -66,5 +71,8 @@ class Gobar_ThemePlugin(plugins.SingletonPlugin):
             'accepted_mime_types': gobar_helpers.accepted_mime_types,
             'type_is_numeric': gobar_helpers.type_is_numeric,
             'attributes_has_at_least_one': gobar_helpers.attributes_has_at_least_one,
-            'get_site_statistics': gobar_helpers.get_site_statistics
+            'get_site_statistics': gobar_helpers.get_site_statistics,
+            'get_pkg_haschanges': gobar_helpers.get_pkg_haschanges,
+            'activity_package_changes': gobar_helpers.activity_package_changes,
         }
+

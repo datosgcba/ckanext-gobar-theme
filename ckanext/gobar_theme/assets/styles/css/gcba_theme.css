@@ -973,6 +973,7 @@ a:hover .group-text .group-table {
 }
 .package #pkg-secondary-info #pkg-recent-activity ul.activity {
   margin-bottom: 22.5px !important;
+  font-size: 1.53rem;
 }
 .package #pkg-secondary-info #pkg-recent-activity ul.activity li.item a {
   color: #0388D0 ;

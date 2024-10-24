@@ -1,17 +1,35 @@
-# [Data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/)
+# ckanext-gobar-theme
 
-Repositorio de la extensión del Portal [data.buenosaires.gob.ar](http://data.buenosaires.gob.ar/) de la Ciudad de Buenos Aires para [CKAN](http://ckan.org/). Este proyecto se encarga de modificaciones al ruteo de la aplicación web, cambios visuales a la interfaz, y customización del portal, entre otros. Este repositorio *no* constituye el proyecto entero.
+Repositorio oficial del portal de datos abiertos de la Ciudad de Buenos Aires ([BA Data](http://data.buenosaires.gob.ar/)). Funciona como extensión de [CKAN](http://ckan.org/), el cual contiene una interfaz personalizada del template original.
 
 - [Instalación](#instalaci%C3%B3n)
 - [Estructura de archivos](#estructura-de-archivos)
-- [Uso del theme](#uso-del-theme)
 - [Créditos](#cr%C3%A9ditos)
+
+| Versiones compatibles de CKAN |
+|-------------------------------|
+| 2.9                           |
+| 2.10                          |
+| 2.11                          |
 
 ## Instalación
 
-Correr dentro del entorno virtual de python(venv) para instalaciones hechas con Docker:
+### From Source
 
-    pip install -e "git+https://github.com/datosgcba/ckanext-gcbaandinotheme.git@ckan2.9_assessment#egg=ckanext-gobar_theme"
+1. Instalar paquete:
+
+    ```sh
+    pip install https://github.com/datosgcba/ckanext-gobar-theme.git
+    ```
+
+2. Agregar `gobar_theme` en la línea `ckan.plugins` dentro del archivo de configuración de ckan.
+
+3. Reiniciar servicio de ckan.
+
+### Docker
+
+Usar proyecto base de `ckan` implementado con docker [datosgcba/ckan-docker](https://github.com/datosgcba/ckan-docker/tree/ckan-2.11).
+
 
 ### Estructura de archivos
 
@@ -33,10 +51,6 @@ Correr dentro del entorno virtual de python(venv) para instalaciones hechas con 
         - package_controller.py # controlador de lógica de datasets y recursos, sobreescribe y/o extiende la lógica de ckan
         - plugin.py # archivo que registra el repositorio como extensión de ckan y declara acciones, helpers y ruteo
 ```
-
-## Uso del theme
-
-La extensión sirve para darle una nueva vista al CKAN original, fue desarrollada utilizando como base el gobar_theme de Nación(https://github.com/datosgobar/datos.gob.ar) y refactorizado para darle la visual requerida por el Gobierno de la Ciudad de Buenos Aires. Aún contiene algunas fallas en los estilos debido a las nuevas actualizaciones que sufrió el CKAN y que fueron "parcheadas" sobre la marcha.
 
 ## Créditos
 

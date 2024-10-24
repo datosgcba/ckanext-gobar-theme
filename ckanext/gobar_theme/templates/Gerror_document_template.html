@@ -1,0 +1,25 @@
+{% extends "gobar_page.html" %}
+
+{% block subtitle %}{{ gettext('Error %(error_code)s', error_code=code) }}{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        height: auto;
+    }
+</style>
+<div id="login-container" class="container-fluid">
+    <div>
+        <div id="login" class="col-xs-12 col-md-10 col-md-offset-1">
+            <div id="title" class="container-fluid" style="height: 40em;align-items: center;display: flex;">
+                <div id="error-description" class="col-xs-12">
+                    <p style="font-size: 20px;">
+                        {% include "404.html" %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% asset 'gobar_js/home_404' %}
+{% endblock %}

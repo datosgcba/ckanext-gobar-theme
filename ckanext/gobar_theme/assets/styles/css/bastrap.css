@@ -21,11 +21,11 @@
 
   @font-face {
     font-family: "CHANEWEI";
-    src: url("fonts/CHANEWEI.eot");
-    src: url("fonts/CHANEWEI.eot?#iefix") format("embedded-opentype"), 
-        url("fonts/CHANEWEI.svg#Gotham") format("svg"), 
-        url("fonts/CHANEWEI.woff") format("woff"), 
-        url("fonts/CHANEWEI.ttf") format("truetype");
+    src: url("/font/CHANEWEI.eot");
+    src: url("/font/CHANEWEI.eot?#iefix") format("embedded-opentype"), 
+        url("/font/CHANEWEI.svg#Gotham") format("svg"), 
+        url("/font/CHANEWEI.woff") format("woff"), 
+        url("/font/CHANEWEI.ttf") format("truetype");
     font-weight: normal;
     font-style: normal; 
   }

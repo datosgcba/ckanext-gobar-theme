@@ -27,21 +27,22 @@
         {% endif %}
 
         {% if pkg.tags|length > 0 %}
-            <div class="row">
-                <div class="col-xs-5 title">
-                    Etiquetas
-                </div>
-                <div class="col-xs-7 value">
-                    {% for tag in pkg.tags %}
-                        <p class="pkg-tag">
-                            <a href="{{ h.add_url_param(new_params={'tags': tag.name}, alternative_url=dataset_url) }}">
-                                {{ tag.name }}
-                            </a>
-                        </p>
-                    {% endfor %}
-                </div>
+        <div class="row">
+            <div class="col-xs-5 title">
+                Etiquetas
             </div>
-        {% endif %}
+            <div class="col-xs-7 value">
+                {% for tag in pkg.tags %}
+                    <p class="pkg-tag">
+                        <a href="{{ h.add_url_param(new_params={'tags': tag.name}, alternative_url=dataset_url) }}">
+                            {{ tag.name }}
+                        </a>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
 
         <div class="row">
             <div class="col-xs-5 title">
@@ -149,12 +150,12 @@
         </div>
         <div class="row group-row">
             <div class="col-xs-5 title">
-
+               
             </div>
             <div class="col-xs-7 value">
                 <div class="group-img-container">
                     <a href="https://gestioncolaborativa.buenosaires.gob.ar/categorias/164" target="_blank" rel="noopener noreferrer">
-                        <img src="/img/mesa.png"
+                        <img src="https://cdn-icons-png.freepik.com/512/16099/16099843.png"
                         class="group-image" data-replace="svg" target="_blank" rel="noopener noreferrer">
                         Mesa de ayuda
                     </a>
@@ -163,25 +164,26 @@
         </div>
         <div class="row group-row">
             <div class="col-xs-5 title">
-                ¡Queremos escucharte!
+                ¡Queremos Escucharte!
             </div>
             <div class="col-xs-7 value">
                 <div class="group-img-container">
-                    <a href="https://encontacto.buenosaires.gob.ar/index.php/983552" target="_blank" rel="noopener noreferrer">
+                    <a href="http://encontacto.buenosaires.gob.ar/index.php/983552?lang=es" target="_blank" rel="noopener noreferrer">
                         <img src="/img/encuesta.png"
                         class="group-image" data-replace="svg" target="_blank" rel="noopener noreferrer">
-                        Encuesta de satisfacción
+                        Encuesta de Satisfacción
                     </a>
                 </div>
             </div>
         </div>
     </div>
+   
     <div id="pkg-recent-activity">
         <h2 class="recent-activity-title">Historial de actividades</h2>
         {% set activity_stream = h.dashboard_activity_stream(user_id=c.user,filter_type='dataset', filter_id=pkg.id) %}
         {% snippet 'snippets/activity_stream.html', activity_stream=activity_stream, id=pkg.id, object_type='package' %}
-        <hr class="final-separator">
+       <hr class="final-separator">
     </div>
-</div>
+</div> 
 
 {% asset 'gobar_js/package' %}

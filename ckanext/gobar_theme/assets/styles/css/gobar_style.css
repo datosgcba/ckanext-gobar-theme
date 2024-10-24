@@ -8,6 +8,10 @@
 
 /* revisado para la version 5.3.3*/
 
+.module-narrow .nav-item > a, .module-narrow .nav-aside li a {
+  font-size: 1.3rem;
+}
+
 .hidden {
   display: none !important;
 }
@@ -41,7 +45,9 @@
 
 .media-item, .module-item {
   padding: 1.5rem !important;
+  height: 300px;
 }
+
 
 .media-grid, .module-grid {
  
@@ -11578,7 +11584,6 @@ div#background-container svg#background g#dieciseis {
 }
 
 .home {
-  background: #f5f5f5;
   display: contents;
 }
 

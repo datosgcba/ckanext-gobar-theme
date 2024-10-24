@@ -22,6 +22,7 @@ class GobArHomeController(HomeController):
             'limit': None,
             'offset': 0,
         }
+        print('ejecuto list_groups')
         return logic.get_action('group_list')(context, data_dict_page_results)
 
     def _featured_packages(self):
@@ -48,6 +49,7 @@ class GobArHomeController(HomeController):
         return []
 
     def index(self):
+        print('ejecuto index controller')
         c.groups = self._list_groups()
         c.sorted_groups = sorted(c.groups, key=lambda x: x['display_name'].lower())
         c.featured_packages = self._featured_packages()

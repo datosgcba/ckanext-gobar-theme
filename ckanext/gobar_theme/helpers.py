@@ -5,6 +5,7 @@ from ckan.common import request, c, g, _
 import json
 from urllib.parse import urljoin
 import ckan.plugins.toolkit as toolkit
+from ckan.types import Context
 
 def _get_organizations_objs(organizations_branch, depth=0):
     organizations = []
@@ -92,6 +93,32 @@ def organizations_with_packages():
     #return len(organizations_with_at_least_one_package)
     return len(organizations)
 
+def activity_package_changes(id: str):  # noqa
+    """
+    Shows the changes to a dataset in one particular activity stream item.
+    """
+    activity_id = id
+    context: Context = {"auth_user_obj": toolkit.g.userobj}
+    try:
+        activity_diff = toolkit.get_action("activity_diff")(
+            context,
+            {"id": activity_id, "object_type": "package", "diff_type": "html"},
+        )
+    except toolkit.ObjectNotFound as e:
+        return toolkit.abort(404, toolkit._("Activity not found"))
+    except toolkit.NotAuthorized:
+        return toolkit.abort(403, toolkit._("Unauthorized to view activity data"))
+
+    return activity_diff
+   
+
+def get_pkg_haschanges(changes):  
+    haschange = True 
+    for change in changes: 
+        print(change)     
+        if change['type'] == 'no_change':
+            haschange = False
+    return haschange
 
 def get_pkg_extra(pkg, keyname):
     if 'extras' in pkg and pkg['extras']:

@@ -40,6 +40,7 @@ $(function () {
             window.scrollTo(0, 0);
         }
 
+
         return isValid;
     };
 
@@ -47,12 +48,16 @@ $(function () {
         if (submit_count > 0){
             return formIsValid();
         }
+        alert('btn mini click');
     });
 
     $('form#group-edit').submit(function () {
+
         submit_count++;
         return formIsValid();
     });
 
 
 });
+
+

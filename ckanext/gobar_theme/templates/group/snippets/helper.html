@@ -1,0 +1,22 @@
+{#
+  Displays a sidebard module with information about group.
+
+  group_type    - The type of group.
+
+  Example:
+
+  {% snippet "group/snippets/helper.html", group_type=group_type %}
+
+  #}
+
+<div class="module module-narrow module-shallow">
+  <h2 class="module-heading">
+    <i class="fa fa-info-circle"></i>
+    {{ _('What are Groups?') }}
+  </h2>
+  <div class="module-content">
+    <p>
+      Son conjuntos de datos agrupados por temáticas o áreas específicas de gobierno, que permiten al usuario agilizar la búsqueda según su área de interés, facilitando la navegación y el acceso a la información relevante dentro del portal. En esta sección podrás acceder a los datasets incluidos en dichos Grupos.
+    </p>
+  </div>
+</div>

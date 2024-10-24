@@ -45,7 +45,8 @@ def resource_delete_and_purge(context, data_dict):
     logic.action.delete.resource_delete(context, data_dict)
     _resource_purge(context, data_dict)
 
-
+#se eliminaron los actions de delete and purge group, organization y dataset porque chocaban con las actions de ckan
+'''
 def group_delete_and_purge(context, data_dict):
     logic.action.delete._group_or_org_delete(context, data_dict)
     return logic.action.delete.group_purge(context, data_dict)
@@ -69,3 +70,5 @@ def organization_delete_and_purge(context, data_dict):
         logic.action.delete.group_purge(context, {'id': suborganization})
     logic.action.delete._group_or_org_delete(context, data_dict, is_org=True)
     return logic.action.delete.group_purge(context, data_dict)
+
+'''
