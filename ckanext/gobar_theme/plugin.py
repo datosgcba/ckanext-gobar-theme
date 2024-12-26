@@ -5,18 +5,22 @@ import ckanext.gobar_theme.actions as gobar_actions
 import ckanext.gobar_theme.routing as gobar_routes
 import ckanext.gobar_theme.helpers as gobar_helpers
 from flask import Blueprint
+import logging
+
+log = logging.getLogger(__name__)
 
 class Gobar_ThemePlugin(plugins.SingletonPlugin):
-    plugins.implements(plugins.IConfigurer)
-    plugins.implements(plugins.IRoutes, inherit=True)
+    plugins.implements(plugins.IConfigurer) 
+    plugins.implements(plugins.IMiddleware) 
+    plugins.implements(plugins.IRoutes, inherit=True)  
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IActions)
     plugins.implements(plugins.IBlueprint)
 
     def get_actions(self):
         return {'package_activity_list_html': gobar_actions.package_activity_list_html}
-
-
+    
+    
     #se eliminaron las llamadas a estos actions ya que chocaban contra las acciones de ckan
     #'group_delete': gobar_actions.group_delete_and_purge,
     # 'package_delete': gobar_actions.dataset_delete_and_purge,
@@ -24,12 +28,22 @@ class Gobar_ThemePlugin(plugins.SingletonPlugin):
     # 'organization_delete': gobar_actions.organization_delete_and_purge
     #'resource_delete': gobar_actions.resource_delete_and_purge
 
+    def make_middleware(self, app, config):
+        log.info("Setting Middlewarezzz...")
 
+        @app.after_request
+        def my_after_request(response):
+            log.info("Add X-Frame-Options")
+            response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+            return response
+
+        return app
+   
     def before_map(self, routing_map):
         gobar_router = gobar_routes.GobArRouter(routing_map)
         gobar_router.set_routes()
         return routing_map
-
+    
     def get_blueprint(self):
         blueprint = Blueprint('ingresar', self.__module__)
         rules = [
@@ -38,9 +52,7 @@ class Gobar_ThemePlugin(plugins.SingletonPlugin):
         for rule in rules:
             blueprint.add_url_rule(*rule)
 
-        return blueprint
-
-
+        return blueprint    
 
     def update_config(self, config):
         toolkit.add_template_directory(config, 'templates')
@@ -48,8 +60,6 @@ class Gobar_ThemePlugin(plugins.SingletonPlugin):
         toolkit.add_resource('assets/styles', 'gobar_css')
         toolkit.add_resource('assets/js', 'gobar_js')
         #toolkit.add_resource('recline', 'gobar_data_preview')
-
-
 
     def get_helpers(self):
         return {
@@ -72,7 +82,4 @@ class Gobar_ThemePlugin(plugins.SingletonPlugin):
             'type_is_numeric': gobar_helpers.type_is_numeric,
             'attributes_has_at_least_one': gobar_helpers.attributes_has_at_least_one,
             'get_site_statistics': gobar_helpers.get_site_statistics,
-            'get_pkg_haschanges': gobar_helpers.get_pkg_haschanges,
-            'activity_package_changes': gobar_helpers.activity_package_changes,
         }
-

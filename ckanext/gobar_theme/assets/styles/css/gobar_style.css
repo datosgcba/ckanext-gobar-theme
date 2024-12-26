@@ -4414,6 +4414,8 @@ tbody.collapse.in {
   width: 22px;
   height: 2px;
   border-radius: 1px;
+  background-color: #333;
+
 }
 
 .navbar-toggler .icon-bar + .icon-bar {
@@ -12480,7 +12482,7 @@ div#background-container svg#background g#dieciseis {
   display: none;
 }
 .filters-container .search-filter ul a li.active {
-  background: #767676;
+  background: #999999;
   color: white;
 }
 .filters-container .search-filter ul a li.active .btn-close-filter {
@@ -13434,15 +13436,15 @@ div#background-container svg#background g#dieciseis {
 }
 #resource-edit #resource-attributes-form {
   padding-top: 30px;
-  border-top: solid 1px #cccccc;
+  /*border-top: solid 1px #cccccc;*/
 }
 #resource-edit #resource-attributes-form .resource-attributes-actions {
   padding: 30px 0;
-  border-top: solid 1px #cccccc;
+  /*border-top: solid 1px #cccccc;*/
 }
 #resource-edit #resource-attributes-form .resource-attributes-group {
   padding-top: 30px;
-  border-top: solid 1px #cccccc;
+  /*border-top: solid 1px #cccccc;*/
 }
 #resource-edit #resource-attributes-form .resource-attributes-group .icon-remove {
   font-size: 20px;
@@ -13587,7 +13589,7 @@ div#background-container svg#background g#dieciseis {
   margin: 0 0 20px 0;
 }
 .resource-container .resource .resource-attributes table {
-  table-layout: fixed;
+  table-layout: auto;
   border-collapse: collapse;
   width: 100%;
 }

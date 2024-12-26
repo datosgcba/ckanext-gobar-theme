@@ -53,13 +53,12 @@
                 {% endfor %}
             </select>
         </div>
+       
     </div>
 {% endif %}
 
-{% set form_style = c.form_style or c.action %}
-
-
-{% if form_style == 'edit' %}
+{% set form_style = data.id|length > 0 %}
+{% if form_style %}
     <div class="control-group">
         <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
         <div class="controls">

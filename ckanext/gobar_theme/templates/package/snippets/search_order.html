@@ -1,18 +1,18 @@
 {% import 'macros/form.html' as form %}
 
 {% set placeholder = placeholder if placeholder else _('Search datasets...') %}
-{% set sorting = [
+{% set sorting = sorting if sorting else [
 ('Última modificación', 'metadata_modified desc'),
 ('Ascendente (A - Z)', 'title_string asc'),
 ('Descendente (Z - A)', 'title_string desc')] %}
 {% set search_class = search_class if search_class else 'search-giant' %}
 {% set no_bottom_border = no_bottom_border if no_bottom_border else false %}
 {% set form_id = form_id if form_id else false %}
+{% set sorting_selected = c.sort_by_selected %}
 
-<form {% if form_id %}id="{{ form_id }}" {% endif %} method="get" data-module="select-switch">
+<form {% if form_id %}id="{{ form_id }}" {% endif %} data-module="select-switch" data-module-target="" method="get">
     <div class="order search-filter">
         <h2 class="filter-title">Ordenar por</h2>
-
         <select id="field-order-by" name="sort"
             style="background: transparent; border: 0 !important; margin-left: 11px;color:#007BC7;">
             {% for label, value in sorting %}
@@ -22,6 +22,9 @@
             {% endif %}
             {% endfor %}
         </select>
+        {% block search_sortby_button %}
+        <button class="btn btn-default js-hide" type="submit" id="submitSearch">{{ _('Go') }}</button>
+        {% endblock %}
 
         <hr>
     </div>

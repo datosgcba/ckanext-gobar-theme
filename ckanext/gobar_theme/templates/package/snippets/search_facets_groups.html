@@ -1,29 +1,47 @@
-{% with items = h.get_faceted_groups() %}
+
+{% with items = h.get_facet_items_dict('groups',c.search_facets) %}
+
+
 <div class="search-filter invisible">
-    <h2 class="filter-title">Temas</h2>
+    <h2 class="filter-title">{{ title }}</h2>
+    {% if items %}
+        <ul class="filter-values">
+            {% for item in items %}
+                {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
+                {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
+                <a href="{{ href }}">
+                    <li class="filter-value {% if item.active %} active{% endif %}">
+                        <span>{{ item.display_name }} {{ count }}</span>
+                        <img class="btn-close-filter" src="/img/close-filter.svg">
+                    </li>
+                </a>
+            {% endfor %}
+        </ul>
 
-    <div>
-        {%- for item in items -%}
-        {%- set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
-        item.facet_active else h.add_url_param(new_params={name: item.name}, extras=extras,
-        alternative_url=alternative_url) -%}
-        {%- set count = count_label(item['facet_count']) if count_label else ('(%d)' % item['facet_count']) -%}
-        {%- set available = item.facet_count > 0 -%}
-
-        <div style="margin-left: 32px;">
-            {%- if available -%}
-            <a href="{{ href }}">
-                {%- endif -%}
-                {{ item.display_name }} {{ count }}
-                <!-- <img src="{{ item.image_display_url }}" data-title="{{ item.display_name }} {{ count }}" {{ 'data-replace=svg' if item.image_display_url|length > 0 else '' }}> -->
-
-                {%- if available -%}
+        {% if h.get_param_int('_%s_limit' % name) %}
+            {% if h.has_more_facets(name, c.search_facets) %}
+                <a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}"
+                   class="filter-show-more">
+                    <p>
+                        {{ h.snippet('svg/flecha_abajo.svg') }}
+                        Mostrar más
+                        {{ h.snippet('svg/flecha_abajo.svg') }}
+                    </p>
+                </a>
+            {% endif %}
+        {% else %}
+            <a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}"
+               class="filter-show-less">
+                <p>
+                    {{ h.snippet('svg/flecha_arriba.svg') }}
+                    Mostrar menos
+                    {{ h.snippet('svg/flecha_arriba.svg') }}
+                </p>
             </a>
-            {%- endif -%}
-        </div>
-        {%- endfor -%}
-    </div>
-
+        {% endif %}
+    {% else %}
+        <p class="filter-empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title)|capitalize }}</p>
+    {% endif %}
     <hr>
 </div>
 {% endwith %}

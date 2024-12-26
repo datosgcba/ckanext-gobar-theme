@@ -28,9 +28,9 @@ def _count_total(organization):
 
 def organization_tree():
     organizations_tree = logic.get_action('group_tree')({}, {'type': 'organization'})
-    organizations = _get_organizations_objs(organizations_tree)
+    organizations = _get_organizations_objs(organizations_tree)    
     for organization in organizations:
-        organization['display_count'] = _count_total(organization)
+        organization['display_count'] = _count_total(organization)   
     return organizations
 
 
@@ -42,7 +42,9 @@ def get_faceted_groups():
         'offset': 0,
     }
     groups = logic.get_action('group_list')({}, data_dict_page_results)
-    facets = ckan_helpers.get_facet_items_dict('groups')
+    
+    facets = ckan_helpers.get_facet_items_dict('groups', groups)
+   
     facets_by_name = {}
     for facet in facets:
         facets_by_name[facet['name']] = facet
@@ -93,32 +95,6 @@ def organizations_with_packages():
     #return len(organizations_with_at_least_one_package)
     return len(organizations)
 
-def activity_package_changes(id: str):  # noqa
-    """
-    Shows the changes to a dataset in one particular activity stream item.
-    """
-    activity_id = id
-    context: Context = {"auth_user_obj": toolkit.g.userobj}
-    try:
-        activity_diff = toolkit.get_action("activity_diff")(
-            context,
-            {"id": activity_id, "object_type": "package", "diff_type": "html"},
-        )
-    except toolkit.ObjectNotFound as e:
-        return toolkit.abort(404, toolkit._("Activity not found"))
-    except toolkit.NotAuthorized:
-        return toolkit.abort(403, toolkit._("Unauthorized to view activity data"))
-
-    return activity_diff
-   
-
-def get_pkg_haschanges(changes):  
-    haschange = True 
-    for change in changes: 
-        print(change)     
-        if change['type'] == 'no_change':
-            haschange = False
-    return haschange
 
 def get_pkg_extra(pkg, keyname):
     if 'extras' in pkg and pkg['extras']:
@@ -137,7 +113,8 @@ def all_descendants(organization_list):
     return descendants
 
 
-def organization_filters():
+def organization_filters(search_facets):
+    
     top_organizations = {}
     ancestors_relations = {}
     tree = organization_tree()
@@ -150,7 +127,9 @@ def organization_filters():
             for child_name in children:
                 ancestors_relations[child_name] = top_organization['name']
 
-    for organization in ckan_helpers.get_facet_items_dict('organization'):
+#en ckan 2.11 la funcion get_facet_items_dict necesita el search_facets 
+
+    for organization in ckan_helpers.get_facet_items_dict('organization',search_facets):
         top_parent_name = ancestors_relations[organization['name']]
         if top_parent_name in top_organizations:
             top_organizations[top_parent_name]['count'] += organization['count']
@@ -167,11 +146,11 @@ def organization_filters():
         return sorted_organizations[:limit]
     return sorted_organizations
 
-
-def get_facet_items_dict(facet, limit=None, exclude_active=False):
+#ckan_helpers.get_facet_items_dict necesita el search_facets para retornar datos
+def get_facet_items_dict(facet,search_facets, limit=None, exclude_active=False):
     if facet == 'organization':
-        return organization_filters()
-    return ckan_helpers.get_facet_items_dict(facet, limit, exclude_active)
+        return organization_filters(search_facets)
+    return ckan_helpers.get_facet_items_dict(facet, search_facets,limit, exclude_active)
 
 
 def render_ar_datetime(datetime_):

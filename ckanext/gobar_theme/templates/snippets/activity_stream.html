@@ -31,7 +31,7 @@
 <span class="group">
   {{ h.link_to(activity.data.group.title if activity.data.group else _('unknown'),
                h.url_for('group.read', id=activity.object_id)) }}
-   {# object_id because the object_name may be out of date) #}
+   {# object_id because the object_name may be out of date #}
 </span>
 {% endmacro %}
 
@@ -49,6 +49,7 @@ object_type - 'package', 'organization', 'group', 'user'
    #} 
 
   {% for activity in activity_stream %} 
+
       {%- snippet "snippets/activities/{}.html".format(
           activity.activity_type.replace(' ', '_')
           ), "snippets/activities/fallback.html",

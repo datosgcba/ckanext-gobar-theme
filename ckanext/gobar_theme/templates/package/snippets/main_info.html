@@ -1,8 +1,12 @@
+{% set sorting = sorting if sorting else [(_('Name Ascending'), 'name asc'), (_('Name Descending'), 'name desc'),('Última modificación', 'metadata_modified desc'),] %}
+{% set sorting_selected = sort_by_selected %}
+
+
 <div id="pkg-main-info" class="col-xs-12 col-md-8">
     <div id="pkg-path">
         <a href="{{ h.url_for(controller='dataset', action='search') }}">Buenos Aires Data</a> / Dataset
     </div>
-    <div id="pkg-title-and-desc">
+    <div id="pkg-title-and-desc" style="min-height: 300px;">
         {% if h.check_access('package_update', {'id':pkg.id }) %}
             {% link_for 'EDITAR DATASET',  named_route=pkg.type ~ '.edit', id=pkg.name, class_='btn btn-blue edit-button' %}
         {% endif %}
@@ -24,10 +28,45 @@
             {% link_for 'ADMINISTRAR RECURSOS', named_route=pkg.type ~ '.resources', id=pkg.name, class_='btn btn-blue resources' %}
         {% endif %}
 
-        <h2 class="pkg-resources-title">Recursos del dataset</h2>
+    <h2 class="pkg-resources-title">Recursos del dataset</h2>
+    <div class="no-padding col-md-12">
+    <form id="resource-search-form" data-module="select-switch" data-module-target="" method="get">
+        <div id="searcherResource" class="no-padding col-md-7">           
+                <div class="input-group search-input-group" style="margin-top:20px">                    
+                    <input type="text" class="form-control input-lg" name="q"  value="{{ query }}" autocomplete="off"
+                        placeholder="Buscar por Nombre del recurso" maxlength="200" />
+                        <span class="input-group-btn" style="float: right;position: absolute;">
+                            <button type="submit" id="submit-search-resource" class="btn btn-default btn-lg">
+                            <i class="fa fa-search"></i>
+                        </button></span> 
+                </div>
+        </div>
+        {% block search_sortby %}
+        {% if sorting %}
+          <div class="form-group control-order-by col-md-4" style="float: right;">
+         
+            <label for="field-order-by">{{ _('Order by') }}</label>
+            <select id="field-order-by-resource" name="sort" class="form-control form-select">
+              {% for label, value in sorting %}
+                {% if label and value %}
+                  <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+            {% block search_sortby_button %}
+            <button class="btn btn-default js-hide" type="submit" id="submit-order-resource">{{ _('Go') }}</button>
+            {% endblock %}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </form>
     </div>
-
+    </div>
+  
     <div id="pkg-resources">
+    {% if pkg.resources|length == 0 %}
+        <h3>Lo sentimos, no se encontraron recursos para "{{ query }}"</h3>
+     {% else %}
         {% for resource in pkg.resources %}
             {% set mostrar = true %}
             {% if resource.format == "" or resource.format|lower not in h.accepted_mime_types() %}
@@ -43,8 +82,12 @@
                 {% snippet "package/snippets/dataset_resource_item.html", pkg=pkg, resource=resource, format=format, is_activity_archive=is_activity_archive %}
             {% endif %}
         {% endfor %}
+    {% endif %}
     </div>
 
 </div>
 
+
 {% asset 'gobar_js/package' %}
+{% asset 'gobar_js/search' %}
+
